@@ -6,6 +6,7 @@
 #include <QPainter>
 #include <QMovie>
 
+//test
 class Zombie : public QGraphicsItem
 {
 public:
