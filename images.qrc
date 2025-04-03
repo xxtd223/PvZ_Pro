@@ -49,5 +49,6 @@
         <file>images/FlagZombieDie.gif</file>
         <file>images/FlagZombieWalk.gif</file>
         <file>images/HugeWave.png</file>
+        <file>images/dialog.png</file>
     </qresource>
 </RCC>
