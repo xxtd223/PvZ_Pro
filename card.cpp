@@ -36,6 +36,14 @@ void Card::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
         painter->setBrush(brush);
         painter->drawRect(QRectF(-48, -68, 98, 132 * (1 - qreal(counter) / cool[map[text]])));
     }
+
+    Shop *shop = qgraphicsitem_cast<Shop *>(parentItem());
+    if (shop->selectedCard == text)
+    {
+        QBrush brush(QColor(255, 255, 0, 100));
+        painter->setBrush(brush);
+        painter->drawRect(QRectF(-50, -70, 100, 140));
+    }
 }
 
 void Card::advance(int phase)
@@ -49,34 +57,27 @@ void Card::advance(int phase)
 
 void Card::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    Q_UNUSED(event)
     if (counter < cool[map[text]])
+    {
         event->setAccepted(false);
+        return;
+    }
+
     Shop *shop = qgraphicsitem_cast<Shop *>(parentItem());
     if (cost[map[text]] > shop->sun)
+    {
         event->setAccepted(false);
-    setCursor(Qt::ArrowCursor);
-}
-
-void Card::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
-{
-    if (QLineF(event->screenPos(), event->buttonDownScreenPos(Qt::LeftButton)).length()
-            < QApplication::startDragDistance())
         return;
-    QDrag *drag = new QDrag(event->widget());
-    QMimeData *mime = new QMimeData;
-    QImage image(":/images/" + text + ".png");
-    mime->setText(text);
-    mime->setImageData(image);
-    drag->setMimeData(mime);
-    drag->setPixmap(QPixmap::fromImage(image));
-    drag->setHotSpot(QPoint(35, 35));
-    drag->exec();
-    setCursor(Qt::ArrowCursor);
-}
+    }
 
-void Card::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-{
-    Q_UNUSED(event)
-    setCursor(Qt::ArrowCursor);
+    if (shop->selectedCard == text)
+    {
+        shop->selectedCard = "";
+    }
+    else
+    {
+        shop->selectedCard = text;
+    }
+    shop->update();
+    update();
 }

@@ -16,13 +16,11 @@ void Map::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidg
     Q_UNUSED(painter)
     Q_UNUSED(option)
     Q_UNUSED(widget)
-    // painter->setPen(Qt::black);
-    // painter->drawRect(boundingRect());
 }
 
 void Map::dragEnterEvent(QGraphicsSceneDragDropEvent *event)
 {
-    if (event->mimeData()->hasText())
+    if (event->mimeData()->hasText() && event->mimeData()->text() == "Shovel")
     {
         event->setAccepted(true);
         dragOver = true;
@@ -42,22 +40,28 @@ void Map::dragLeaveEvent(QGraphicsSceneDragDropEvent *event)
 void Map::dropEvent(QGraphicsSceneDragDropEvent *event)
 {
     dragOver = false;
-    if (event->mimeData()->hasText())
+    if (event->mimeData()->hasText() && event->mimeData()->text() == "Shovel")
     {
-        QString s = event->mimeData()->text();
         QPointF pos = mapToScene(event->pos());
         pos.setX((int(pos.x()) - 249) / 82 * 82 + 290);
         pos.setY((int(pos.y()) - 81) / 98 * 98 + 130);
-        if (s == "Shovel")
-        {
-            Shovel *shovel = qgraphicsitem_cast<Shovel *>(scene()->items(QPointF(830, 15))[0]);
-            shovel->removePlant(pos);
-        }
-        else
-        {
-            Shop *shop = qgraphicsitem_cast<Shop *>(scene()->items(QPointF(300, 15))[0]);
-            shop->addPlant(s, pos);
-        }
+        Shovel *shovel = qgraphicsitem_cast<Shovel *>(scene()->items(QPointF(830, 15))[0]);
+        shovel->removePlant(pos);
     }
     update();
+}
+
+void Map::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    QPointF pos = mapToScene(event->pos());
+    pos.setX((int(pos.x()) - 249) / 82 * 82 + 290);
+    pos.setY((int(pos.y()) - 81) / 98 * 98 + 130);
+
+    Shop *shop = qgraphicsitem_cast<Shop *>(scene()->items(QPointF(300, 15))[0]);
+    if (shop->selectedCard != "")
+    {
+        shop->addPlant(shop->selectedCard, pos);
+        shop->selectedCard = "";
+        shop->update();
+    }
 }

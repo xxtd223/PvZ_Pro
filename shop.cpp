@@ -5,6 +5,7 @@ Shop::Shop()
     sun = 200;
     counter = 0;
     time = int(7.0 * 1000 / 33);
+    selectedCard = "";
     Card *card = nullptr;
     for (int i = 0; i < Card::name.size(); ++i)
     {
@@ -29,6 +30,13 @@ void Shop::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     painter->setFont(font);
     painter->drawText(QRectF(-255, 18, 65, 22), Qt::AlignCenter, QString::number(sun));
     painter->drawPoint(-220, 0);
+
+    if (!selectedCard.isEmpty())
+    {
+        painter->setPen(Qt::yellow);
+        painter->setBrush(Qt::NoBrush);
+        painter->drawRect(QRectF(-270, -45, 540, 90));
+    }
 }
 
 void Shop::advance(int phase)
@@ -49,6 +57,7 @@ void Shop::addPlant(QString s, QPointF pos)
     foreach (QGraphicsItem *item, items)
         if (item->type() == Plant::Type)
             return;
+
     sun -= Card::cost[Card::map[s]];
     Plant *plant = nullptr;
     switch (Card::map[s])
@@ -70,6 +79,7 @@ void Shop::addPlant(QString s, QPointF pos)
     }
     plant->setPos(pos);
     scene()->addItem(plant);
+
     QList<QGraphicsItem *> child = childItems();
     foreach (QGraphicsItem *item, child)
     {

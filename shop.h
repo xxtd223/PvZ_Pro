@@ -23,6 +23,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     void advance(int phase) override;
     void addPlant(QString s, QPointF pos);
+    QString selectedCard;
 private:
     int counter;
     int time;

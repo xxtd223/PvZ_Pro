@@ -16,6 +16,7 @@ public:
     void dragEnterEvent(QGraphicsSceneDragDropEvent *event) override;
     void dragLeaveEvent(QGraphicsSceneDragDropEvent *event) override;
     void dropEvent(QGraphicsSceneDragDropEvent *event) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 private:
     bool dragOver;
 };
