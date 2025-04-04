@@ -50,5 +50,7 @@
         <file>images/FlagZombieWalk.gif</file>
         <file>images/HugeWave.png</file>
         <file>images/dialog.png</file>
+        <file>images/MainMenu.png</file>
+        <file>images/StartButton.png</file>
     </qresource>
 </RCC>

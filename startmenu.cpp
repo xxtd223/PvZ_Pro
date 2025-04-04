@@ -15,53 +15,41 @@ StartMenu::StartMenu(QWidget *parent) : QWidget(parent)
     QGraphicsScene *scene = new QGraphicsScene(this);
     scene->setSceneRect(0, 0, 900, 600);
 
-    QGraphicsPixmapItem *bg = new QGraphicsPixmapItem(QPixmap(":/images/StartBackground.jpg"));
+    QGraphicsPixmapItem *bg = new QGraphicsPixmapItem(QPixmap(":/images/MainMenu.png"));
     bg->setPos(0, 0);
     scene->addItem(bg);
 
-    // 添加标题
-    QGraphicsPixmapItem *title = new QGraphicsPixmapItem(QPixmap(":/images/Title.png"));
-    title->setPos(150, 50);
-    title->setScale(0.8);
-    scene->addItem(title);
-
-    // 创建开始按钮
-    QPushButton *startButton = new QPushButton("开始游戏");
+    // 创建开始按钮（使用图片）
+    QPushButton *startButton = new QPushButton;
+    startButton->setIcon(QIcon(":/images/StartButton.png"));
+    startButton->setIconSize(QSize(200, 80));
     startButton->setStyleSheet(
         "QPushButton {"
-        "   background-color: #FFA500;"
-        "   border: 2px solid #8B4513;"
-        "   border-radius: 10px;"
-        "   color: white;"
-        "   font-size: 24px;"
-        "   padding: 10px 20px;"
-        "   min-width: 200px;"
+        "   background-color: transparent;"
+        "   border: none;"
         "}"
         "QPushButton:hover {"
-        "   background-color: #FF8C00;"
+        "   background-color: rgba(255, 255, 255, 30%);"
         "}"
         "QPushButton:pressed {"
-        "   background-color: #FF6347;"
+        "   background-color: rgba(255, 255, 255, 50%);"
         "}"
         );
 
-    // 创建退出按钮
-    QPushButton *exitButton = new QPushButton("退出游戏");
+    // 创建退出按钮（使用图片）
+    QPushButton *exitButton = new QPushButton;
+    exitButton->setIcon(QIcon(":/images/ExitButton.png"));
+    exitButton->setIconSize(QSize(200, 80));
     exitButton->setStyleSheet(
         "QPushButton {"
-        "   background-color: #FF4500;"
-        "   border: 2px solid #8B4513;"
-        "   border-radius: 10px;"
-        "   color: white;"
-        "   font-size: 24px;"
-        "   padding: 10px 20px;"
-        "   min-width: 200px;"
+        "   background-color: transparent;"
+        "   border: none;"
         "}"
         "QPushButton:hover {"
-        "   background-color: #FF6347;"
+        "   background-color: rgba(255, 255, 255, 30%);"
         "}"
         "QPushButton:pressed {"
-        "   background-color: #FF0000;"
+        "   background-color: rgba(255, 255, 255, 50%);"
         "}"
         );
 
@@ -94,6 +82,7 @@ StartMenu::StartMenu(QWidget *parent) : QWidget(parent)
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setGeometry(0, 0, 900, 600);
+    view->lower();  // 确保视图在按钮下方
 
     setLayout(layout);
 }

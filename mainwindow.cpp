@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), waveCount(0)
     connect(timer, &QTimer::timeout, this, &MainWindow::check);
     sound->play();
     timer->start(33);
-    view->show();
+
 }
 
 MainWindow::~MainWindow()
