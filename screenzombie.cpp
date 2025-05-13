@@ -2,7 +2,7 @@
 
 ScreenZombie::ScreenZombie()
 {
-    hp = 1370;
+    hp = 1350;
     atk = 100 * 33 / 1000;
     speed = 80.0 * 33 / 1000 / 4.7;
     setMovie(":/images/ScreenZombieWalk.gif");

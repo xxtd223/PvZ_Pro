@@ -52,5 +52,9 @@
         <file>images/dialog.png</file>
         <file>images/MainMenu.png</file>
         <file>images/StartButton.png</file>
+        <file>images/Background2.png</file>
+        <file>images/ZombieCard.png</file>
+        <file>images/PlantCard.png</file>
+        <file>images/Background3.png</file>
     </qresource>
 </RCC>

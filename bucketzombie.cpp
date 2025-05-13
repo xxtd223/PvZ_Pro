@@ -2,7 +2,7 @@
 
 BucketZombie::BucketZombie()
 {
-    hp = 1370;
+    hp = 1080;
     atk = 100 * 33 / 1000;
     speed = 80.0 * 33 / 1000 / 4.7;
     setMovie(":/images/BucketZombieWalk.gif");

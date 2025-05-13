@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    catalogwindow.cpp \
     flagzombie.cpp \
         main.cpp \
     sunflower.cpp \
@@ -51,9 +52,12 @@ SOURCES += \
     bucketzombie.cpp \
     conezombie.cpp \
     footballzombie.cpp \
-    screenzombie.cpp
+    screenzombie.cpp \
+    startmenu.cpp
+
 
 HEADERS += \
+    catalogwindow.h \
     flagzombie.h \
     sunflower.h \
     zombie.h \
@@ -78,7 +82,8 @@ HEADERS += \
     bucketzombie.h \
     conezombie.h \
     footballzombie.h \
-    screenzombie.h
+    screenzombie.h \
+    startmenu.h
 
 
 # Default rules for deployment.

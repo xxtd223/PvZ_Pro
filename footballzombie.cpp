@@ -2,7 +2,7 @@
 
 FootballZombie::FootballZombie()
 {
-    hp = 1670;
+    hp = 1620;
     atk = 100 * 33 / 1000;
     speed = 80.0 * 33 / 1000 / 2.5;
     setMovie(":/images/FootballZombieWalk.gif");
